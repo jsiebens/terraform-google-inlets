@@ -1,0 +1,14 @@
+[Unit]
+Description=inlets PRO TCP server
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=2
+StartLimitInterval=0
+EnvironmentFile=/etc/default/inlets-pro
+ExecStart=/usr/local/bin/inlets-pro tcp server --auto-tls --auto-tls-san="${auto_tls_san}" --token="\$${AUTHTOKEN}"
+
+[Install]
+WantedBy=multi-user.target
